@@ -18,4 +18,8 @@ subscriptionRouter.put('/:id', (req, res) => {
     res.send({title: 'Update Subscription by ID'});
 });
 
+subscriptionRouter.delete('/:id', (req, res) => {
+    res.send({title: 'Delete Subscription by ID'});
+});
+
 export default subscriptionRouter;
