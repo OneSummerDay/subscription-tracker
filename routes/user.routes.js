@@ -13,3 +13,7 @@ userRouter.get('/user/:id', (req, res) => {
 userRouter.post('/', (req, res) => {
     res.send({title: 'Create a new User'});
 });
+
+userRouter.put('/user/:id', (req, res) => {
+    res.send({title: 'Update user by ID'});
+});
