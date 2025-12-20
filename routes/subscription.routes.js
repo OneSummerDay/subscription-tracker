@@ -22,4 +22,8 @@ subscriptionRouter.delete('/:id', (req, res) => {
     res.send({title: 'Delete Subscription by ID'});
 });
 
+subscriptionRouter.get('/user/:userId', (req, res) => {
+    res.send({title: 'Get Subscriptions by User ID'});
+});
+
 export default subscriptionRouter;
