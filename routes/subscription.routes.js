@@ -14,5 +14,8 @@ subscriptionRouter.post('/', (req, res) => {
     res.send({title: 'Create a new Subscription'});
 });
 
+subscriptionRouter.put('/:id', (req, res) => {
+    res.send({title: 'Update Subscription by ID'});
+});
 
 export default subscriptionRouter;
