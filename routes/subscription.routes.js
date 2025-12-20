@@ -9,3 +9,6 @@ subscriptionRouter.get('/', (req, res) => {
 subscriptionRouter.get('subscription/:id', (req, res) => {
     res.send({title: 'Get Subscription by ID'});
 });
+
+
+export default subscriptionRouter;
