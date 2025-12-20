@@ -17,3 +17,7 @@ userRouter.post('/', (req, res) => {
 userRouter.put('/user/:id', (req, res) => {
     res.send({title: 'Update user by ID'});
 });
+
+userRouter.delete('user/:id', (req, res) => {
+    res.send({title: 'Delete user by ID'});
+});
