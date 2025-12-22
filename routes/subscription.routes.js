@@ -30,5 +30,9 @@ subscriptionRouter.put('/:id/cancel', (req, res) => {
     res.send({title: 'Cancel Subscription by ID'});
 });
 
+subscriptionRouter.get('/upcoming-renewals', (req, res) => {
+    res.send({title: 'Get Upcoming Subscriptions'});
+});
+
 
 export default subscriptionRouter;
