@@ -26,4 +26,9 @@ subscriptionRouter.get('/user/:userId', (req, res) => {
     res.send({title: 'Get Subscriptions by User ID'});
 });
 
+subscriptionRouter.put('/:id/cancel', (req, res) => {
+    res.send({title: 'Cancel Subscription by ID'});
+});
+
+
 export default subscriptionRouter;
