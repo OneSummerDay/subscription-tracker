@@ -10,6 +10,7 @@ import errorMiddleware from './middlewares/error.middleware.js';
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/app/v1/users', userRouter);
 app.use('/app/v1/auth', authRouter);
