@@ -1,5 +1,52 @@
-export const signUp = (req, res, next) => {
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
+import { User } from '../models/user.model';
+import { JWT_EXPIRES_IN, JWT_SECRET } from '../config/env';
+
+export const signUp = async (req, res, next) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
+    try {
+        const { name, email, password } = req.body;
+
+        const existingUser = await User.findOne({ email })
+
+        if (existingUser) {
+            const error = new Error('User with this email already exists');
+            error.status = 409;
+            throw error;
+        }
+
+        const solt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, solt);
+
+        const newUsers = await user.create([{
+            name,
+            email,
+            password: hashedPassword,
+        }], { session });
+
+        const token = jwt.sign({ userId: newUsers[0]._id}, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+
+        await session.commitTransaction();
+        session.endSession();
+        
+        res.status(201).json({
+            success: true,
+            message: 'User created successfully',
+            token,
+            user: {
+                user: newUsers[0]
+            }
+        });
+    } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
+        next(error);
+    }
 };
 
 export const signIn = (req, res, next) => {
@@ -7,5 +54,5 @@ export const signIn = (req, res, next) => {
 };
 
 export const signOut = (req, res, next) => {
-    
+
 };
