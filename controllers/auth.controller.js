@@ -86,7 +86,6 @@ export const signIn = async (req, res, next) => {
 
 export const signOut = (req, res, next) => {
     try {
-        // For JWT, sign out is usually handled on the client side by deleting the token.
         res.status(200).json({
             success: true,
             message: 'User signed out successfully'
